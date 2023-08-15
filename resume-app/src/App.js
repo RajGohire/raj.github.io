@@ -89,6 +89,7 @@ const App = () => {
 				</button>
 			</body>
 			<footer>
+				<p>npm run deploy (from master)</p>
 				<FooterComp />
 			</footer>
 		</div>

@@ -5,12 +5,13 @@ const PillComp = ({ icon, title }) => {
 	return (
 		<div className="pillComp">
 			<img
-				width="40"
+				width="35"
 				src={require(`../assets/${title
 					.toLowerCase()
 					.replaceAll(" ", "")}-icon.svg`)}
+				loading="lazy"
 			/>
-			<h3>{title}</h3>
+			<p>{title}</p>
 		</div>
 	);
 };

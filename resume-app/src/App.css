@@ -1,6 +1,6 @@
 .App {
 	text-align: center;
-	scroll-behavior: smooth;
+	/* scroll-behavior: smooth; */
 
 	/* Dot Grid Pattern */
 	background: radial-gradient(
@@ -8,12 +8,12 @@
 				calc(var(--mouse-y, 0) * 38%), */
 			circle at 1px 1px,
 		white 1px,
-		black 1px
+		#15131d 1px
 	);
 
 	/* Cross Dot Grid Pattern */
 	background: radial-gradient(white 1px, transparent 0),
-		radial-gradient(white 1px, black 1px);
+		radial-gradient(white 1px, #15131d 1px);
 	background-position: 0 0, 30px 30px;
 
 	background-size: 60px 60px;

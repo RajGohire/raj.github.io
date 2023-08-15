@@ -1,38 +1,44 @@
+/* Skills COmponent */
 .skillsContainer {
 	color: white;
-	border: solid 5px grey;
+	/* border: solid 5px grey; */
 	border-radius: 15px;
 	width: 80%;
 	align-self: center;
 	padding: 0 10px 10px 10px;
 }
 
+/* Pill Component */
 .pillList {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: flex-start;
+	/* justify-content: center; */
+	/* border: 1px solid white; */
 }
 
 .pillComp {
-	background-color: grey;
-	border-radius: 15px;
+	background-color: #2d2b3c;
+	border-radius: 50px;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	padding: 0 20px;
+	padding: 5px 15px;
+	margin: 5px 3px;
+	/* border: 5px solid #1c1a26; */
 }
 
 .pillcomp > img {
 	/* width: 50; */
-	/* border: solid; */
+	/* border: 1px solid white; */
+}
+
+.pillComp > p {
+	/* border: 1px solid white; */
+	margin: 0 10px;
 }
 
 @media screen and (max-width: 768px) {
-	.pillComp {
-		padding: 0;
-	}
-
-	.pillComp > h3 {
+	.pillComp > p {
 		display: none;
 	}
 }
