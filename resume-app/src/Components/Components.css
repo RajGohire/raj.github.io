@@ -1,0 +1,38 @@
+.skillsContainer {
+	color: white;
+	border: solid 5px grey;
+	border-radius: 15px;
+	width: 80%;
+	align-self: center;
+	padding: 0 10px 10px 10px;
+}
+
+.pillList {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+
+.pillComp {
+	background-color: grey;
+	border-radius: 15px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0 20px;
+}
+
+.pillcomp > img {
+	/* width: 50; */
+	/* border: solid; */
+}
+
+@media screen and (max-width: 768px) {
+	.pillComp {
+		padding: 0;
+	}
+
+	.pillComp > h3 {
+		display: none;
+	}
+}
