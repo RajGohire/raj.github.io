@@ -1,34 +1,91 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import Footer from "./Components/Footer";
-import Spline from "@splinetool/react-spline";
+import FooterComp from "./Components/FooterComp";
+// import Spline from "@splinetool/react-spline";
+// import DarkModeSwitch from "./Components/DarkModeSwitch";
+import SkillsComp from "./Components/SkillsComp";
 
-function App() {
+const App = () => {
+	const root = document.documentElement;
+
+	const skillsList = [
+		"Java",
+		"JavaScript",
+		"Python",
+		"React JS",
+		"HTML 5",
+		"CSS",
+		"MongoDB",
+		"Splunk",
+		"Node JS",
+		"Github",
+		"Git",
+		"Bootstrap",
+		"Express JS",
+		// "C",
+		// "Micronaut",
+	];
+
+	// Scroll to Top
+	const topRef = useRef(null);
+
+	// Dark Mode
+	const [theme, setTheme] = React.useState("light");
+
+	// Mousemove
+	document.addEventListener("mousemove", (evt) => {
+		let x = evt.clientX / window.innerWidth;
+		let y = evt.clientY / window.innerHeight;
+		// console.log(evt, window.innerHeight, window.innerWidth, x, y);
+
+		root.style.setProperty("--mouse-x", x);
+		root.style.setProperty("--mouse-y", y);
+	});
+
+	useEffect(() => {
+		const selectedTheme = localStorage.getItem("theme");
+		if (selectedTheme) {
+			setTheme(selectedTheme);
+		}
+	}, []);
+
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
-			</header>
+		<div className="App" ref={topRef} theme={theme}>
+			<header></header>
 			<body>
-				{/* <Spline scene="https://prod.spline.design/JjFHTdgK6W2e2Oap/scene.splinecode" /> */}
+				<button
+					className="toggleTheme"
+					onClick={() => {
+						const newTheme = theme === "light" ? "dark" : "light";
+						localStorage.setItem("theme", newTheme);
+						setTheme(newTheme);
+					}}
+				>
+					Toggle Theme
+				</button>
+
+				<h1>Raj Gohire</h1>
+
+				<SkillsComp skills={skillsList} />
+
+				<button
+					onClick={() => {
+						window.scrollTo({
+							top: topRef.current.offsetTop,
+							behavior: "smooth",
+						});
+					}}
+				>
+					Back to top
+				</button>
 			</body>
 			<footer>
-				<Footer />
+				<p>npm run deploy (from master)</p>
+				<FooterComp />
 			</footer>
 		</div>
 	);
-}
+};
 
 export default App;
