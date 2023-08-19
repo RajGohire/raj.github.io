@@ -1,22 +1,46 @@
-.App {
-	text-align: center;
-	/* scroll-behavior: smooth; */
+:root {
+	--primary-color: #302ae6;
+	--secondary-color: #536390;
+	--font-color: #424242;
+	--bg-color: #fff;
+	--heading-color: #292922;
+	--border-hover-color: ;
+}
 
+[theme="dark"] {
+	--primary-color: #9a97f3;
+	--secondary-color: #818cab;
+	--font-color: #e1e1ff;
+	--bg-color: #15131d;
+	--heading-color: #818cab;
+	--border-hover-color: #c8c6f3;
+}
+
+/* ##################################################### */
+
+.App {
 	/* Dot Grid Pattern */
 	background: radial-gradient(
 		/* circle at calc(var(--mouse-x, 0) * 38%)
 				calc(var(--mouse-y, 0) * 38%), */
 			circle at 1px 1px,
-		white 1px,
-		#15131d 1px
+		var(--font-color) 1px,
+		var(--bg-color) 1px
 	);
 
 	/* Cross Dot Grid Pattern */
-	background: radial-gradient(white 1px, transparent 0),
-		radial-gradient(white 1px, #15131d 1px);
+	background: radial-gradient(var(--font-color) 1px, transparent 0),
+		radial-gradient(var(--font-color) 1px, var(--bg-color) 1px);
 	background-position: 0 0, 30px 30px;
 
 	background-size: 60px 60px;
+
+	/* text-align: center; */
+	/* scroll-behavior: smooth; */
+	display: flex;
+	flex-flow: column wrap;
+	color: var(--font-color);
+	padding: 3% 3%;
 }
 
 .App-logo {
@@ -30,7 +54,7 @@
 	}
 }
 
-.App-header {
+/* .App-header {
 	background-color: #282c34;
 	min-height: 100vh;
 	display: flex;
@@ -39,25 +63,18 @@
 	justify-content: center;
 	font-size: calc(10px + 2vmin);
 	color: white;
-}
+} */
 
-.App-link {
+/* .App-link {
 	color: #61dafb;
-}
+	color: var(--primary-color);
+} */
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
 	from {
 		transform: rotate(0deg);
 	}
 	to {
 		transform: rotate(360deg);
 	}
-}
-
-/* ##################################################### */
-
-body {
-	display: flex;
-	flex-flow: column wrap;
-	justify-content: space-between;
-}
+} */

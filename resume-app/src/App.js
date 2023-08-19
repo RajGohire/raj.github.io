@@ -2,11 +2,13 @@ import React, { useEffect, useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import FooterComp from "./Components/FooterComp";
-import Spline from "@splinetool/react-spline";
-import DarkModeSwitch from "./Components/DarkModeSwitch";
+// import Spline from "@splinetool/react-spline";
+// import DarkModeSwitch from "./Components/DarkModeSwitch";
 import SkillsComp from "./Components/SkillsComp";
 
 const App = () => {
+	const root = document.documentElement;
+
 	const skillsList = [
 		"Java",
 		"JavaScript",
@@ -29,15 +31,9 @@ const App = () => {
 	const topRef = useRef(null);
 
 	// Dark Mode
-	const [isDarkMode, setDarkMode] = React.useState(false);
-
-	const toggleDarkMode = (enabled) => {
-		setDarkMode(enabled);
-	};
+	const [theme, setTheme] = React.useState("light");
 
 	// Mousemove
-	const root = document.documentElement;
-
 	document.addEventListener("mousemove", (evt) => {
 		let x = evt.clientX / window.innerWidth;
 		let y = evt.clientY / window.innerHeight;
@@ -47,35 +43,31 @@ const App = () => {
 		root.style.setProperty("--mouse-y", y);
 	});
 
-	useEffect(() => {}, []);
+	useEffect(() => {
+		const selectedTheme = localStorage.getItem("theme");
+		if (selectedTheme) {
+			setTheme(selectedTheme);
+		}
+	}, []);
 
 	return (
-		<div className="App" ref={topRef}>
+		<div className="App" ref={topRef} theme={theme}>
 			<header></header>
 			<body>
-				<DarkModeSwitch
-					style={{ marginBottom: "2rem" }}
-					enabled={isDarkMode}
-					onChange={toggleDarkMode}
-					size={120}
-				/>
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
+				<button
+					className="toggleTheme"
+					onClick={() => {
+						const newTheme = theme === "light" ? "dark" : "light";
+						localStorage.setItem("theme", newTheme);
+						setTheme(newTheme);
+					}}
 				>
-					Learn React
-				</a>
+					Toggle Theme
+				</button>
+
+				<h1>Raj Gohire</h1>
+
 				<SkillsComp skills={skillsList} />
-				<img src={logo} className="App-logo" alt="logo" />
-				<img src={logo} className="App-logo" alt="logo" />
-				<img src={logo} className="App-logo" alt="logo" />
-				<img src={logo} className="App-logo" alt="logo" />
 
 				<button
 					onClick={() => {

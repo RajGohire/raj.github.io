@@ -1,5 +1,6 @@
-/* Skills COmponent */
-.skillsContainer {
+/* Skills Component */
+.skillsDiv {
+	/* text-align: center; */
 	color: white;
 	/* border: solid 5px grey; */
 	border-radius: 15px;
@@ -9,7 +10,7 @@
 }
 
 /* Pill Component */
-.pillList {
+.pillsContainer {
 	display: flex;
 	flex-wrap: wrap;
 	/* justify-content: center; */
@@ -17,7 +18,9 @@
 }
 
 .pillComp {
-	background-color: #2d2b3c;
+	/* background-color: #2d2b3c; */
+	background-color: var(--primary-color);
+	color: var(--font-color);
 	border-radius: 50px;
 	display: flex;
 	justify-content: flex-start;
@@ -27,18 +30,45 @@
 	/* border: 5px solid #1c1a26; */
 }
 
-.pillcomp > img {
-	/* width: 50; */
-	/* border: 1px solid white; */
-}
+/* .pillcomp > img {
+	width: 50;
+	border: 1px solid white;
+} */
 
 .pillComp > p {
 	/* border: 1px solid white; */
 	margin: 0 10px;
 }
 
+.pillComp:hover {
+	border: solid var(--border-hover-color) 3px;
+	padding: 4px 14px;
+	transition: border-color 0.3s;
+}
+
 @media screen and (max-width: 768px) {
 	.pillComp > p {
 		display: none;
 	}
+}
+
+.pillInfo {
+	/* border: red solid; */
+	/* align-items: center; */
+	/* position: relative; */
+}
+
+.info {
+	display: none;
+	position: absolute;
+	background-color: var(--primary-color);
+	color: var(--font-color);
+	border-radius: 20px;
+	padding: 5px 15px;
+	margin: 5px 3px;
+	max-width: 300px;
+}
+
+.pillComp:hover + .info {
+	display: inline;
 }
