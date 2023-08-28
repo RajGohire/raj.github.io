@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import FooterComp from "./Components/FooterComp";
@@ -7,6 +7,14 @@ import FooterComp from "./Components/FooterComp";
 import SkillsComp from "./Components/SkillsComp";
 
 const App = () => {
+	// Scroll References
+	const topRef = useRef(null); // Top of page
+	const aboutRef = useRef(null); // About
+	const projectsRef = useRef(null); // Projects
+	const contactRef = useRef(null); // Contact
+	const experienceRef = useRef(null); // Experience
+
+	// Constants
 	const root = document.documentElement;
 
 	const skillsList = [
@@ -27,11 +35,25 @@ const App = () => {
 		// "Micronaut",
 	];
 
-	// Scroll to Top
-	const topRef = useRef(null);
+	const navList = [
+		["About", aboutRef],
+		["Projects", projectsRef],
+		["Contact", contactRef],
+		["Experience", experienceRef],
+	].map((item) => (
+		<li>
+			<label
+				onClick={() => {
+					scrollToSection(item[1]);
+				}}
+			>
+				{item[0]}
+			</label>
+		</li>
+	));
 
 	// Dark Mode
-	const [theme, setTheme] = React.useState("light");
+	const [theme, setTheme] = useState("light");
 
 	// Mousemove
 	document.addEventListener("mousemove", (evt) => {
@@ -43,17 +65,41 @@ const App = () => {
 		root.style.setProperty("--mouse-y", y);
 	});
 
+	// Scroll
+	const [scrolled, setScrolled] = useState(false);
+	const scrollToSection = (ref) => {
+		ref.current?.scrollIntoView({ behavior: "smooth" });
+	};
+
 	useEffect(() => {
 		const selectedTheme = localStorage.getItem("theme");
 		if (selectedTheme) {
 			setTheme(selectedTheme);
 		}
+
+		let navSticky = document.querySelector(".navSticky");
+		let scrollTopButton = document.querySelector(".scrollTopButton");
+		document.addEventListener("scroll", () => {
+			if (window.scrollY > window.innerHeight * 0.3) {
+				if (!scrolled) {
+					navSticky.style.top = "0px";
+					scrollTopButton.style.opacity = "1";
+					setScrolled(true);
+				}
+			} else {
+				navSticky.style.top = "-100px";
+				scrollTopButton.style.opacity = "0";
+				setScrolled(false);
+			}
+		});
 	}, []);
 
 	return (
-		<div className="App" ref={topRef} theme={theme}>
-			<header></header>
-			<body>
+		<div className="AppContainer" ref={topRef} theme={theme}>
+			<body className="App">
+				<ul className="navBar">{navList}</ul>
+				<ul className="navSticky">{navList}</ul>
+
 				<button
 					className="toggleTheme"
 					onClick={() => {
@@ -69,21 +115,57 @@ const App = () => {
 
 				<SkillsComp skills={skillsList} />
 
-				<button
+				<SkillsComp skills={skillsList} ref={aboutRef} />
+				<SkillsComp skills={skillsList} ref={projectsRef} />
+				<SkillsComp skills={skillsList} ref={contactRef} />
+				<SkillsComp skills={skillsList} />
+				<SkillsComp skills={skillsList} />
+
+				<div
+					className="scrollTopButton"
 					onClick={() => {
-						window.scrollTo({
-							top: topRef.current.offsetTop,
-							behavior: "smooth",
-						});
+						scrollToSection(topRef);
 					}}
 				>
-					Back to top
-				</button>
+					<svg
+						className="arrow"
+						width="100%"
+						height="100%"
+						viewBox="-8.4 -8.4 40.80 40.80"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						transform="rotate(0)matrix(-1, 0, 0, 1, 0, 0)"
+					>
+						<g id="SVGRepo_bgCarrier" stroke-width="0">
+							<path
+								transform="translate(-8.4, -8.4), scale(1.275)"
+								d="M16,29.981779307127C20.036651046328274,29.78605912004725,23.31361802183267,26.994688208857717,25.6672703022602,23.709390809185663C27.85154346886468,20.660517781469068,28.599067521924432,16.965059644368747,27.974945246776215,13.266796891243986C27.294248142531934,9.233297612294722,25.820218747308356,5.030712943417237,22.195205277384826,3.1355236853525543C18.46155871528264,1.1835400812597767,13.980678135752871,2.097589679026822,10.211406001998974,3.9798607070806593C6.518136504152325,5.824178105216707,3.5633747387539683,8.92779688514521,2.571542438650546,12.935042190496919C1.5573202405364115,17.03274816513857,2.468903477332334,21.391469662128316,5.081106393379779,24.70752708731784C7.712624991542823,28.04810477879623,11.752420079604637,30.187726545844146,16,29.981779307127"
+								fill="#424247"
+								// fill="rgba(255, 255, 255, 0.68)"
+								strokewidth="0"
+							></path>
+						</g>
+						<g
+							id="SVGRepo_tracerCarrier"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						></g>
+						<g id="SVGRepo_iconCarrier">
+							<path
+								d="M19 15L12 9L5 15"
+								stroke="var(--font-color)"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							></path>
+						</g>
+					</svg>
+				</div>
+				<footer>
+					<p>npm run deploy (from master)</p>
+					<FooterComp />
+				</footer>
 			</body>
-			<footer>
-				<p>npm run deploy (from master)</p>
-				<FooterComp />
-			</footer>
 		</div>
 	);
 };
