@@ -1,10 +1,17 @@
 :root {
-	--primary-color: #302ae6;
-	--secondary-color: #536390;
-	--font-color: #424242;
+	--primary-color: #dcd6f7;
+	--secondary-color: #a6b1e1;
+	--font-color: #424874;
 	--bg-color: #fff;
 	--heading-color: #292922;
 	--border-hover-color: ;
+	/* Greeting */
+	--greeting-bg-color: #151517;
+	--greeting-font-color: #e1e1ff;
+	/* Sticky */
+	--nav-bg-color: rgba(0, 0, 0, 0.08);
+	--nav-font-color: #151517;
+	--nav-hover-color: rgba(0, 0, 0, 0.623);
 }
 
 [theme="dark"] {
@@ -14,33 +21,42 @@
 	--bg-color: #151517;
 	--heading-color: #818cab;
 	--border-hover-color: #c8c6f3;
+	/* Greeting */
+	--greeting-bg-color: #fff;
+	--greeting-font-color: #424874;
+	/* Sticky */
+	--nav-bg-color: rgba(255, 255, 255, 0.08);
+	--nav-font-color: #fff;
+	--nav-hover-color: rgba(255, 255, 255, 0.623);
 }
 
 /* ##################################################### */
 
 .App {
+	background-color: var(--bg-color);
+	transition: background-color 0.3s ease-in-out;
+
 	/* Dot Grid Pattern */
-	background: radial-gradient(
-		/* circle at calc(var(--mouse-x, 0) * 38%)
-				calc(var(--mouse-y, 0) * 38%), */
-			circle at 1px 1px,
-		var(--font-color) 1px,
+	/* background: radial-gradient(
+		circle at calc(var(--mouse-x, 0) * 38%) calc(var(--mouse-y, 0) * 38%),
+		circle at 1px 1px,
+			var(--font-color) 1px,
 		var(--bg-color) 1px
-	);
+	); */
 
 	/* Cross Dot Grid Pattern */
-	background: radial-gradient(var(--font-color) 1px, transparent 0),
-		radial-gradient(var(--font-color) 1px, var(--bg-color) 1px);
-	background-position: 0 0, 30px 30px;
+	/* background: radial-gradient(var(--font-color) 1px, transparent 0),
+		radial-gradient(var(--font-color) 1px, var(--bg-color) 1px); */
+	/* background-position: 0 0, 30px 30px; */
 
-	background-size: 60px 60px;
+	/* background-size: 60px 60px; */
 
 	/* text-align: center; */
 	/* scroll-behavior: smooth; */
 	display: flex;
 	flex-flow: column wrap;
 	color: var(--font-color);
-	padding: 0 3%;
+	/* padding: 0 3%; */
 }
 
 /* .App-logo {
@@ -79,6 +95,27 @@
 	}
 } */
 
+.greetContainer {
+	position: fixed;
+	/* border: 2px red solid; */
+	width: 100vw;
+	transition: 0.9s cubic-bezier(0.87, 0, 0.13, 1);
+	z-index: 3;
+}
+
+.greetDiv {
+	height: 100vh;
+	background-color: var(--greeting-bg-color);
+	color: var(--greeting-font-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.greetCurve {
+	transition: 0.7s cubic-bezier(0.87, 0, 0.13, 1);
+}
+
 /* Navbar fixed and pop-out */
 .navBar,
 .navSticky {
@@ -90,11 +127,11 @@
 	min-width: fit-content;
 	width: 25%;
 	/* max-width: 25%; */
-	background-color: rgba(255, 255, 255, 0.08);
+	background-color: var(--nav-bg-color);
 	backdrop-filter: blur(16px);
 	border-radius: 25px;
 	list-style: none;
-	border: 1px solid rgba(255, 255, 255, 0.08);
+	border: 1px solid var(--nav-bg-color);
 	padding: 0;
 }
 
@@ -102,14 +139,14 @@
 	/* position: sticky; */
 	position: fixed;
 	top: -100px;
-	z-index: 99;
+	z-index: 2;
 	/* transition: 0.4s cubic-bezier(0.53, 1.69, 0.9, 0.89); */
 	transition: 0.5s cubic-bezier(0.5, -0.75, 0.5, 1.75);
 }
 
 .navSticky li,
 .navBar li {
-	color: #fff;
+	color: var(--nav-font-color);
 	text-align: center;
 	/* margin: 0 8px; */
 	padding: 12px 10px;
@@ -125,7 +162,7 @@
 
 .navSticky li:hover,
 .navBar li:hover {
-	color: rgba(255, 255, 255, 0.623);
+	color: var(--nav-hover-color);
 }
 
 /* Scroll To Top */
@@ -136,13 +173,9 @@
 	bottom: 3vh;
 	height: 65px;
 	transition: opacity 0.4s ease-in-out;
+	z-index: 2;
 }
 
-.arrow {
-	--font-color: #fff;
-}
-
-.scrollTopButton:hover > .arrow {
-	--font-color: rgba(255, 255, 255, 0.623);
-	transition: 0.3s ease-in-out;
+.scrollTopButton:hover > .arrow > #SVGRepo_iconCarrier > path {
+	stroke: var(--nav-hover-color);
 }
