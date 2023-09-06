@@ -95,11 +95,12 @@
 	}
 } */
 
+/* Landing Greeting Animation */
 .greetContainer {
 	position: fixed;
 	/* border: 2px red solid; */
 	width: 100vw;
-	transition: 0.9s cubic-bezier(0.87, 0, 0.13, 1);
+	transition: transform 0.9s cubic-bezier(0.87, 0, 0.13, 1);
 	z-index: 3;
 }
 
@@ -113,7 +114,15 @@
 }
 
 .greetCurve {
-	transition: 0.7s cubic-bezier(0.87, 0, 0.13, 1);
+	transition: transform 0.7s cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+.homeDiv {
+	height: 100vh;
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+	justify-content: center;
 }
 
 /* Navbar fixed and pop-out */
@@ -133,6 +142,11 @@
 	list-style: none;
 	border: 1px solid var(--nav-bg-color);
 	padding: 0;
+}
+
+.navBar {
+	position: absolute;
+	top: 0;
 }
 
 .navSticky {

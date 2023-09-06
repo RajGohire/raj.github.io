@@ -5,6 +5,9 @@ import FooterComp from "./Components/FooterComp";
 // import Spline from "@splinetool/react-spline";
 // import DarkModeSwitch from "./Components/DarkModeSwitch";
 import SkillsComp from "./Components/SkillsComp";
+import AboutComp from "./Components/AboutComp";
+import ProjectsComp from "./Components/ProjectsComp";
+import ExperienceComp from "./Components/ExperienceComp";
 
 const App = () => {
 	// Scroll References
@@ -39,9 +42,9 @@ const App = () => {
 
 	const navList = [
 		["About", aboutRef],
+		["Experience", experienceRef],
 		["Projects", projectsRef],
 		["Contact", contactRef],
-		["Experience", experienceRef],
 	].map((item, index) => (
 		<li key={index}>
 			<label
@@ -82,7 +85,7 @@ const App = () => {
 		let navSticky = document.querySelector(".navSticky");
 		let scrollTopButton = document.querySelector(".scrollTopButton");
 		document.addEventListener("scroll", () => {
-			if (window.scrollY > window.innerHeight * 0.3) {
+			if (window.scrollY > window.innerHeight * 0.1) {
 				if (!scrolled) {
 					navSticky.style.top = "0px";
 					scrollTopButton.style.opacity = "1";
@@ -95,13 +98,6 @@ const App = () => {
 			}
 		});
 
-		setTimeout(() => {
-			let greetContainer = document.querySelector(".greetContainer");
-			let greetCurve = document.querySelector(".greetCurve");
-			greetContainer.style.transform = `translateY(-105vh)`;
-			greetCurve.setAttribute("height", "3vh");
-		}, 1700);
-
 		let currentIndex = 0;
 
 		setInterval(() => {
@@ -112,10 +108,35 @@ const App = () => {
 					? currentIndex
 					: currentIndex + 1;
 		}, 1000 / words.length);
+
+		setTimeout(() => {
+			let greetContainer = document.querySelector(".greetContainer");
+			let greetCurve = document.querySelector(".greetCurve");
+			greetContainer.style.transform = `translateY(-105vh)`;
+			greetCurve.setAttribute("height", "3vh");
+		}, 1700);
+
+		setInterval(() => {
+			const greetContainer = document.querySelector(".greetContainer");
+			greetContainer.style.display = "none";
+		}, 5000);
 	}, []);
 
 	return (
 		<div className="App" ref={topRef} theme={theme}>
+			<h4
+				style={{
+					alignSelf: "center",
+					position: "fixed",
+					top: "5vh",
+					// right: "3vw",
+					backgroundColor: "red",
+					color: "yellow",
+				}}
+			>
+				-- Work in Progress --
+			</h4>
+
 			<div className="greetContainer">
 				<div className="greetDiv">
 					<h2>&lt;&gt;</h2>
@@ -145,9 +166,11 @@ const App = () => {
 				</svg>
 			</div>
 
-			<ul className="navBar">{navList}</ul>
-			<ul className="navSticky">{navList}</ul>
-
+			<div className="homeDiv">
+				<ul className="navBar">{navList}</ul>
+				<ul className="navSticky">{navList}</ul>
+				<h1>Raj Gohire</h1>
+			</div>
 			<button
 				className="toggleTheme"
 				onClick={() => {
@@ -159,14 +182,10 @@ const App = () => {
 				Toggle Theme
 			</button>
 
-			<h1>Raj Gohire</h1>
-
-			<SkillsComp skills={skillsList} />
-
-			<SkillsComp skills={skillsList} ref={aboutRef} />
-			<SkillsComp skills={skillsList} ref={projectsRef} />
-			<SkillsComp skills={skillsList} ref={contactRef} />
-			<SkillsComp skills={skillsList} />
+			<AboutComp ref={aboutRef} />
+			<ExperienceComp ref={experienceRef} />
+			<ProjectsComp ref={projectsRef} />
+			{/* <SkillsComp ref={contactRef} /> */}
 			<SkillsComp skills={skillsList} />
 
 			<div

@@ -1,4 +1,6 @@
-/* Skills Component */
+.aboutDiv,
+.experienceDiv,
+.projectsDiv,
 .skillsDiv {
 	/* text-align: center; */
 	color: var(--font-color);
@@ -7,6 +9,22 @@
 	width: 80%;
 	align-self: center;
 	padding: 0 10px 10px 10px;
+}
+
+/* About Component */
+.aboutDiv {
+}
+
+/* Experience Component */
+.experienceDiv {
+}
+
+/* Projects Component */
+.projectsDiv {
+}
+
+/* Skills Component */
+.skillsDiv {
 }
 
 /* Pill Component */

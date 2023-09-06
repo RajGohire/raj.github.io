@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const PillComp = ({ icon, title }) => {
+const PillComp = ({ title }) => {
 	// console.log(`../assets/${title.toLowerCase()}-icon.svg`);
 	return (
 		<div className="pillInfo">
