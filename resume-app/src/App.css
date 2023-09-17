@@ -125,6 +125,73 @@
 	justify-content: center;
 }
 
+#navContainer {
+	display: flex;
+	flex-flow: wrap;
+	position: absolute;
+	top: 14px;
+	/* border: 1px solid red; */
+	align-items: center;
+	align-content: center;
+	justify-content: space-between;
+	width: 80vw;
+	max-height: 45px;
+}
+
+#navContainer h2 {
+	transition: 0.4s;
+
+	&::after {
+		content: " .";
+		color: orange;
+	}
+
+	&:hover {
+		letter-spacing: 7px;
+		cursor: default;
+		padding-right: 7px;
+	}
+}
+
+/* Toggle Theme */
+#toggleTheme {
+	/* all: unset; */
+	background-color: transparent;
+	/* border: none; */
+	padding: 0;
+	border-radius: 50%;
+	cursor: pointer;
+	inline-size: 2rem;
+	block-size: 2rem;
+	/* touch-action: manipulation; */
+	/* -webkit-tap-highlight-color: transparent; */
+	/* outline-offset: 5px; */
+
+	& > svg {
+		stroke-linecap: round;
+	}
+
+	& :hover {
+		fill: red;
+		stroke: red;
+	}
+}
+
+.sun-and-moon {
+	& > :is(.moon, .sun, .sun-beams) {
+		transform-origin: center center;
+	}
+
+	& > :is(.moon, .sun) {
+		/* fill: var(--icon-fill); */
+	}
+
+	& > .sun-beams {
+		/* stroke: var(--icon-fill); */
+		stroke-width: 2px;
+	}
+}
+
 /* Navbar fixed and pop-out */
 .navBar,
 .navSticky {
@@ -142,6 +209,25 @@
 	list-style: none;
 	border: 1px solid var(--nav-bg-color);
 	padding: 0;
+	z-index: 2;
+
+	& li {
+		color: var(--nav-font-color);
+		text-align: center;
+		/* margin: 0 8px; */
+		padding: 12px 10px;
+		width: 100%;
+		/* border: 1px white solid; */
+	}
+
+	& li label {
+		font-weight: normal;
+		transition: color 0.3s ease;
+	}
+
+	& li:hover {
+		color: var(--nav-hover-color);
+	}
 }
 
 .navBar {
@@ -153,30 +239,44 @@
 	/* position: sticky; */
 	position: fixed;
 	top: -100px;
-	z-index: 2;
 	/* transition: 0.4s cubic-bezier(0.53, 1.69, 0.9, 0.89); */
 	transition: 0.5s cubic-bezier(0.5, -0.75, 0.5, 1.75);
 }
 
-.navSticky li,
-.navBar li {
-	color: var(--nav-font-color);
-	text-align: center;
-	/* margin: 0 8px; */
-	padding: 12px 10px;
-	width: 100%;
-	/* border: 1px white solid; */
+/* Scroll Down Prompt */
+.scrollDownPrompt {
+	position: absolute;
+	bottom: 3vh;
+	width: 2vw;
+	min-width: 25px;
+	height: 2vh;
+	min-height: 25px;
+	animation: fade_move_down 1.7s ease-in infinite;
 }
 
-.navSticky li label,
-.navBar li label {
-	font-weight: normal;
-	transition: color 0.3s ease;
+@keyframes fade_move_down {
+	0% {
+		transform: translate(0, -3vh);
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		transform: translate(0, 3vh);
+		opacity: 0;
+	}
 }
 
-.navSticky li:hover,
-.navBar li:hover {
-	color: var(--nav-hover-color);
+/* Experience Section */
+#experienceSection {
+	/* text-align: center; */
+	color: var(--font-color);
+	/* border: solid 5px grey; */
+	border-radius: 15px;
+	width: 85%;
+	align-self: center;
+	padding: 55px 10px 10px 10px;
 }
 
 /* Scroll To Top */
@@ -192,4 +292,13 @@
 
 .scrollTopButton:hover > .arrow > #SVGRepo_iconCarrier > path {
 	stroke: var(--nav-hover-color);
+}
+
+/* ##################################################### */
+
+/* Small Screens  */
+@media screen and (max-width: 768px) {
+	.navBar {
+		display: none;
+	}
 }

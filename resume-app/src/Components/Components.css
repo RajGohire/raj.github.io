@@ -1,14 +1,14 @@
 .aboutDiv,
-.experienceDiv,
+/* .experienceDiv, */
 .projectsDiv,
 .skillsDiv {
 	/* text-align: center; */
 	color: var(--font-color);
 	/* border: solid 5px grey; */
 	border-radius: 15px;
-	width: 80%;
+	width: 85%;
 	align-self: center;
-	padding: 0 10px 10px 10px;
+	padding: 55px 10px 10px 10px;
 }
 
 /* About Component */
@@ -16,7 +16,16 @@
 }
 
 /* Experience Component */
-.experienceDiv {
+.experienceComp {
+	margin-top: 3vh;
+	background-color: var(--primary-color);
+	/* border: 1px solid red; */
+	padding: 20px;
+	border-radius: 20px;
+
+	& > h3 {
+		margin: 0;
+	}
 }
 
 /* Projects Component */
@@ -88,4 +97,18 @@
 
 .pillComp:hover + .info {
 	display: inline;
+}
+
+/* Footer Component */
+.footerComp {
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+	justify-content: center;
+	height: 25vh;
+	background-color: var(--nav-bg-color);
+
+	& > section > * {
+		margin: 0 0.8vw;
+	}
 }
