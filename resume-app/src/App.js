@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import FooterComp from "./Components/FooterComp";
 // import Spline from "@splinetool/react-spline";
@@ -13,14 +12,36 @@ const App = () => {
 	// Scroll References
 	const topRef = useRef(null); // Top of page
 	const aboutRef = useRef(null); // About
-	const projectsRef = useRef(null); // Projects
-	const contactRef = useRef(null); // Contact
 	const experienceRef = useRef(null); // Experience
+	const projectsRef = useRef(null); // Projects
+	const skillsRef = useRef(null); // Skills
+	// const contactRef = useRef(null); // Contact
 
 	// Constants
 	const root = document.documentElement;
 
 	const words = ["您好!", "नमस्ते!", "Hola!", "Bonjour!", "Hello!"];
+
+	// Dark Mode
+	const [theme, setTheme] = useState("light");
+
+	const navList = [
+		["About", aboutRef],
+		["Experience", experienceRef],
+		["Projects", projectsRef],
+		["Skills", skillsRef],
+		// ["Contact", contactRef],
+	].map((item, index) => (
+		<li key={index}>
+			<label
+				onClick={() => {
+					scrollToSection(item[1]);
+				}}
+			>
+				{item[0]}
+			</label>
+		</li>
+	));
 
 	const skillsList = [
 		"Java",
@@ -40,25 +61,104 @@ const App = () => {
 		// "Micronaut",
 	];
 
-	const navList = [
-		["About", aboutRef],
-		["Experience", experienceRef],
-		["Projects", projectsRef],
-		["Contact", contactRef],
-	].map((item, index) => (
-		<li key={index}>
-			<label
-				onClick={() => {
-					scrollToSection(item[1]);
-				}}
-			>
-				{item[0]}
-			</label>
-		</li>
-	));
-
-	// Dark Mode
-	const [theme, setTheme] = useState("light");
+	const experienceList = [
+		{
+			title: "Software Development Engineer I",
+			employer: "Digital Futures / Tesco",
+			duration: "(April 2023 – Present)",
+			description:
+				"Employed by Digital Futures, contractor at Tesco. Contributed to the backend Sales Tax team to enhance the accuracy and efficiency of customer transaction tax calculations in the quote lifecycle.",
+			achievements: [
+				"Pioneered a Tesco platform as part of an introduction project, inspiring customers with innovative ways to repurpose packaging materials into crafts through engaging tutorials.",
+				"Collaborated with the team to seamlessly deploy code into the customer-facing live environment.",
+				"Proactively mastered an external codebase, to enhance an internal tool, optimizing the efficiency of alert management and support processes.",
+				"Revamped codebase by addressing technical debts, identifying areas for improvement, and implementing enhancements.",
+			],
+			skills: [
+				"Java",
+				"Micronaut",
+				"Kafka",
+				"Couchbase",
+				"Splunk",
+				"Git",
+				"Gradle",
+				"Docker",
+			],
+		},
+		{
+			title: "Software Engineer Trainee",
+			employer: "Digital Futures",
+			duration: "(January 2023 – March 2023)",
+			description:
+				"Led full-stack development projects, creating innovative web solutions. Learnt the MERN stack and Java OOP.",
+			achievements: [
+				"Successfully undertook the Oracle Certified Foundations Associate, Java (1Z0-811).",
+				"Led a group project to construct a full-stack resume website with user authentication.",
+				"Engineered a full-stack Twitter clone, enabling users to view and post messages online.",
+				"Created a front-end news summary website utilizing the Guardian API, streamlining news consumption.",
+			],
+			skills: [
+				"Java",
+				"MongoDB",
+				"Express.js",
+				"React.js",
+				"Node.js",
+				"Mongoose",
+				"HTML",
+				"JavaScript",
+				"Bootstrap",
+				"CSS",
+				"Mocha",
+				"Chai.js",
+				"Git",
+			],
+		},
+		{
+			title: "Software Engineer",
+			employer: "Acting Collective",
+			duration: "(September 2021 – June 2022)",
+			description:
+				"Collaborated with a team of five, as a part-time full-stack software engineer, in a student-run start-up to develop, debug, and test a web-based platform.",
+			achievements: [],
+			skills: ["HTML", "JavaScript", "CSS", "Git", "Trello"],
+		},
+		{
+			title: "Data Scientist",
+			employer: "EliteFit.AI",
+			duration: "(March 2021 – August 2021)",
+			description:
+				"Streamlined back-end operations and integrated human pose-estimation software to enhance workout performance and efficiency.",
+			achievements: [
+				"Streamlined the accuracy and efficiency of the workflow by developing an automated system for generating body key-points using multiple human pose-estimation frameworks.",
+				"Slashed review time by 60% by automating and managing the review process for trainers' workouts.",
+				"Streamlined testing by 150% by coding dynamic tests for session workouts.",
+				"Boosted user experience by integrating real-time prescriptive feedback and rep counter for workouts.",
+				"Refined and tuned the pose-detection and scoring model.",
+				"Demonstrated adaptability and teamwork skills, integrating smoothly into the workplace culture, and collaborating efficiently with the close agile team to resolve problems.",
+			],
+			skills: [
+				"Python",
+				"PostgreSQL",
+				"AWS",
+				"MediaPipe",
+				"BlazePose",
+				"OpenPose",
+				"PoseNet",
+				"Git",
+				"NumPy",
+				"Pandas",
+			],
+		},
+		{
+			title: "Technology Internship Experience",
+			employer: "Bright Network",
+			duration: "(June 2020 – July 2020)",
+			description:
+				"The internship entailed a work project to simulate real-life tasks (Project Managing the development of Facial Recognition software in a banking app) and talks by employers such as Accenture, Amazon, Google, and Vodafone.",
+			ahievements: ["https://tinyurl.com/4y6zzs55", ""],
+			skills: [],
+		},
+	];
 
 	// Mousemove
 	document.addEventListener("mousemove", (evt) => {
@@ -84,17 +184,20 @@ const App = () => {
 
 		let navSticky = document.querySelector(".navSticky");
 		let scrollTopButton = document.querySelector(".scrollTopButton");
+		let scrollDownPrompt = document.querySelector(".scrollDownPrompt");
 		document.addEventListener("scroll", () => {
-			if (window.scrollY > window.innerHeight * 0.1) {
+			if (window.scrollY > window.innerHeight * 0.8) {
 				if (!scrolled) {
 					navSticky.style.top = "0px";
 					scrollTopButton.style.opacity = "1";
 					setScrolled(true);
 				}
+				scrollDownPrompt.style.visibility = "hidden";
 			} else {
 				navSticky.style.top = "-100px";
 				scrollTopButton.style.opacity = "0";
 				setScrolled(false);
+				scrollDownPrompt.style.visibility = "visible";
 			}
 		});
 
@@ -166,27 +269,121 @@ const App = () => {
 				</svg>
 			</div>
 
+			{/* <Spline
+				id="avatar"
+				style={{
+					position: "absolute",
+				}}
+				scene="https://prod.spline.design/dGW-moCpQPrqCRfs/scene.splinecode"
+			/> */}
+
 			<div className="homeDiv">
 				<ul className="navBar">{navList}</ul>
 				<ul className="navSticky">{navList}</ul>
+				<div id="navContainer">
+					<h2>r g</h2>
+					<button
+						id="toggleTheme"
+						title="Toggle Theme"
+						onClick={() => {
+							const newTheme =
+								theme === "light" ? "dark" : "light";
+							localStorage.setItem("theme", newTheme);
+							setTheme(newTheme);
+						}}
+					>
+						{/* {theme} */}
+						<svg
+							class="sun-and-moon"
+							aria-hidden="true"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+						>
+							<circle
+								class="sun"
+								cx="12"
+								cy="12"
+								r="6"
+								mask="url(#moon-mask)"
+								fill="var(--greeting-bg-color)"
+							/>
+							<g
+								class="sun-beams"
+								stroke="var(--greeting-bg-color)"
+							>
+								<line x1="12" y1="1" x2="12" y2="3" />
+								<line x1="12" y1="21" x2="12" y2="23" />
+								<line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+								<line
+									x1="18.36"
+									y1="18.36"
+									x2="19.78"
+									y2="19.78"
+								/>
+								<line x1="1" y1="12" x2="3" y2="12" />
+								<line x1="21" y1="12" x2="23" y2="12" />
+								<line
+									x1="4.22"
+									y1="19.78"
+									x2="5.64"
+									y2="18.36"
+								/>
+								<line
+									x1="18.36"
+									y1="5.64"
+									x2="19.78"
+									y2="4.22"
+								/>
+							</g>
+							<mask class="moon" id="moon-mask">
+								<rect
+									x="0"
+									y="0"
+									width="100%"
+									height="100%"
+									fill="white"
+								/>
+								<circle cx="24" cy="10" r="6" fill="black" />
+							</mask>
+						</svg>
+					</button>
+				</div>
+
 				<h1>Raj Gohire</h1>
+
+				<div className="scrollDownPrompt">
+					<svg
+						className="scrollDownSVG"
+						width="100%"
+						height="100%"
+						viewBox="-8 -4 16 8"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g id="SVGRepo_iconCarrier">
+							<path
+								d="M-7-3 0 3 7-3"
+								stroke="var(--nav-font-color)"
+								strokeWidth="1"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							></path>
+						</g>
+					</svg>
+				</div>
 			</div>
-			<button
-				className="toggleTheme"
-				onClick={() => {
-					const newTheme = theme === "light" ? "dark" : "light";
-					localStorage.setItem("theme", newTheme);
-					setTheme(newTheme);
-				}}
-			>
-				Toggle Theme
-			</button>
 
 			<AboutComp ref={aboutRef} />
-			<ExperienceComp ref={experienceRef} />
+			<section id="experienceSection" ref={experienceRef}>
+				<h1>Experience</h1>
+				{experienceList.map((exp, index) => (
+					<ExperienceComp key={index} exp={exp} />
+				))}
+			</section>
 			<ProjectsComp ref={projectsRef} />
+			<SkillsComp skills={skillsList} ref={skillsRef} />
 			{/* <SkillsComp ref={contactRef} /> */}
-			<SkillsComp skills={skillsList} />
 
 			<div
 				className="scrollTopButton"
@@ -227,10 +424,8 @@ const App = () => {
 					</g>
 				</svg>
 			</div>
-			<footer>
-				<p>npm run deploy (from master)</p>
-				<FooterComp />
-			</footer>
+
+			<FooterComp />
 		</div>
 	);
 };
