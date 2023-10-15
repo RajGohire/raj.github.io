@@ -16,7 +16,30 @@ const ProjectsComp = forwardRef(({}, ref) => {
 				SDL2 library for C - following Agile/Scrum methodology. Our
 				client for the project were the university. Version control for
 				the project was carried out via Git with intermediate and final
-				reflection reports to track our progress.
+				reflection reports to track our progress. Also later ported in
+				Python.
+			</p>
+
+			<h3>Sokoban Intelligent Agent</h3>
+			<h5></h5>
+			<p>
+				Agent in Python for finding the optimal solution to the Sokoban
+				game within OpenAI Gym environment, using A-Star Search, Depth
+				First Search and Reinforcement Learning.
+			</p>
+
+			<h3>NLP Chatbot using NLTK & scikit-learn</h3>
+			<h5></h5>
+			<p>
+				A general-purpose chatbot capable of Intent Matching, Identity
+				Management, Small Talk, Transactions, Information Retrieval and
+				Game Playing.
+			</p>
+
+			<h3>AR Experience</h3>
+			<h5></h5>
+			<p>
+				Created enhanced AR panels for information about museum pieces.
 			</p>
 		</section>
 	);

@@ -230,16 +230,15 @@ const App = () => {
 			<h4
 				style={{
 					alignSelf: "center",
-					position: "fixed",
+					position: "absolute",
 					top: "5vh",
 					// right: "3vw",
-					backgroundColor: "red",
-					color: "yellow",
+					backgroundColor: "grey",
+					color: "white",
 				}}
 			>
 				-- Work in Progress --
 			</h4>
-
 			<div className="greetContainer">
 				<div className="greetDiv">
 					<h2>&lt;&gt;</h2>
@@ -268,7 +267,6 @@ const App = () => {
 					{/* m=starting point, l=draw line, q=draw curve, z=close path */}
 				</svg>
 			</div>
-
 			{/* <Spline
 				id="avatar"
 				style={{
@@ -276,8 +274,7 @@ const App = () => {
 				}}
 				scene="https://prod.spline.design/dGW-moCpQPrqCRfs/scene.splinecode"
 			/> */}
-
-			<div className="homeDiv">
+			<div className="hero">
 				<ul className="navBar">{navList}</ul>
 				<ul className="navSticky">{navList}</ul>
 				<div id="navContainer">
@@ -350,7 +347,22 @@ const App = () => {
 					</button>
 				</div>
 
-				<h1>Raj Gohire</h1>
+				<section className="greetingMarquee">
+					<h1>Hi,</h1>
+					<h1 style={{ display: "flex" }}>
+						I'm&nbsp;
+						<p
+							style={{
+								margin: "0",
+								color: "var(--font-color)",
+							}}
+						>
+							Raj Gohire
+						</p>
+						.
+					</h1>
+					<h2>Software Engineer</h2>
+				</section>
 
 				<div className="scrollDownPrompt">
 					<svg
@@ -384,7 +396,6 @@ const App = () => {
 			<ProjectsComp ref={projectsRef} />
 			<SkillsComp skills={skillsList} ref={skillsRef} />
 			{/* <SkillsComp ref={contactRef} /> */}
-
 			<div
 				className="scrollTopButton"
 				onClick={() => {
@@ -424,6 +435,16 @@ const App = () => {
 					</g>
 				</svg>
 			</div>
+
+			<button
+				className="resumeDownload"
+				onClick={() => {
+					window.location.href =
+						"https://drive.google.com/uc?export=download&id=1VaR5tkaQJB-rYMqCIYWO8ci_cNYH8oyo";
+				}}
+			>
+				Download Resume
+			</button>
 
 			<FooterComp />
 		</div>

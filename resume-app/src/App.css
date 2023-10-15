@@ -117,12 +117,38 @@
 	transition: transform 0.7s cubic-bezier(0.87, 0, 0.13, 1);
 }
 
-.homeDiv {
+.hero {
 	height: 100vh;
 	display: flex;
 	flex-flow: column wrap;
 	align-items: center;
 	justify-content: center;
+	/* border: 3px solid white; */
+
+	& > * {
+		/* border: 1px solid red; */
+	}
+
+	& > section {
+		/* display: flex; */
+		/* flex-flow: column wrap; */
+		/* position: relative; */
+		/* align-self: flex-start; */
+		/* left: 15%; */
+		width: 80%;
+
+		& > * {
+			margin: 0;
+			font-size: calc((6vw + 6vh) / 2);
+			color: var(--secondary-color);
+			font-weight: lighter;
+			font-style: italic;
+		}
+
+		& > h2 {
+			font-size: calc((3vw + 3vh) / 2);
+		}
+	}
 }
 
 #navContainer {
@@ -134,7 +160,7 @@
 	align-items: center;
 	align-content: center;
 	justify-content: space-between;
-	width: 80vw;
+	width: 90vw;
 	max-height: 45px;
 }
 
